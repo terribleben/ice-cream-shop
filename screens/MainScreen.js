@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 
 import ActionMenu from '../components/ActionMenu';
+import Scenery from '../components/Scenery';
 import Store from '../redux/Store';
 
 class MainScreen extends React.Component {
@@ -29,7 +30,7 @@ class MainScreen extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
-        {this._renderScenery()}
+        <Scenery />
         {content}
       </View>
     );
@@ -58,14 +59,6 @@ class MainScreen extends React.Component {
           <Text>Try Again</Text>
         </TouchableHighlight>
       </View>
-    );
-  }
-
-  _renderScenery = () => {
-    return (
-      <Image
-        source={require('../assets/foreground.png')}
-        style={styles.foregroundImage} />
     );
   }
 
@@ -105,14 +98,6 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     padding: 8,
     margin: 8,
-  },
-  foregroundImage: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    width: 512,
-    height: 128,
-    resizeMode: 'contain',
   },
 });
 
