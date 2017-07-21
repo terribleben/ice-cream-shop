@@ -16,6 +16,16 @@ import Scenery from '../components/Scenery';
 import Store from '../redux/Store';
 
 class MainScreen extends React.Component {
+  state = {
+    cashForDisplay: 0,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.cash !== this.props.cash) {
+      requestAnimationFrame(this._animateCash);
+    }
+  }
+  
   render() {
     let content;
     switch (this.props.status) {
@@ -43,7 +53,7 @@ class MainScreen extends React.Component {
           style={styles.actionMenu}
           order={this.props.order} />
         <Text style={styles.cash}>
-          Cash: ${this._formatPrice(this.props.cash)}
+          Cash: ${this._formatPrice(this.state.cashForDisplay)}
         </Text>
       </View>
     );
@@ -69,6 +79,20 @@ class MainScreen extends React.Component {
   _onPressRestart = () => {
     Store.dispatch({ type: 'RESTART' });
   }
+
+  _animateCash = () => {
+    if (this.props.cash === 0) {
+      this.setState({ cashForDisplay: 0 });
+    } else if (Math.abs(this.props.cash - this.state.cashForDisplay) < 0.1) {
+      this.setState({ cashForDisplay: this.props.cash });
+    } else {
+      this.setState({
+        cashForDisplay: this.state.cashForDisplay + 0.1 * (this.props.cash - this.state.cashForDisplay),
+      }, () => {
+        requestAnimationFrame(this._animateCash);
+      });
+    }
+  }
 }
 
 const styles = StyleSheet.create({
@@ -81,6 +105,8 @@ const styles = StyleSheet.create({
     right: 12,
     top: 12,
     fontWeight: '700',
+    fontSize: 16,
+    color: '#ffffff',
   },
   actionMenu: {
     position: 'absolute',
