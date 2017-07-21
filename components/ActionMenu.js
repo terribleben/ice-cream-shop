@@ -6,6 +6,8 @@ import {
   View,
 } from 'react-native';
 
+import Store from '../redux/Store';
+
 export default class ActionMenu extends React.Component {
   render() {
     return (
@@ -16,11 +18,15 @@ export default class ActionMenu extends React.Component {
         <TouchableHighlight style={styles.button}>
           <Text>Serve Order</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight style={styles.button} onPress={this._onPressPunch}>
           <Text>Punch in Face</Text>
         </TouchableHighlight>
       </View>
     );
+  }
+
+  _onPressPunch = () => {
+    Store.dispatch({ type: 'UPDATE_STATUS', status: 'finished' });
   }
 }
 
