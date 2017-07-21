@@ -24,6 +24,7 @@ export default class App extends React.Component {
       images: [
         require('./assets/customer.png'),
         require('./assets/foreground.png'),
+        require('./assets/moreground.png'),
       ],
     });
     } catch (e) {

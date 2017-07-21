@@ -30,6 +30,9 @@ export default class Scenery extends React.Component {
         <Image
           source={require('../assets/foreground.png')}
           style={styles.foregroundImage} />
+        <Image
+          source={require('../assets/moreground.png')}
+          style={styles.moregroundImage} />
       </View>
     );
   }
@@ -88,9 +91,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 0,
-    width: 512,
+    width: 480,
     height: 128,
     resizeMode: 'contain',
+  },
+  moregroundImage: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: Dimensions.get('window').width - 480,
+    height: 128,
+    resizeMode: 'stretch',
   },
   customer: {
     position: 'absolute',
