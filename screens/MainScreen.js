@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dimensions,
+  Image,
   StatusBar,
   StyleSheet,
   Text,
@@ -28,6 +29,7 @@ class MainScreen extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
+        {this._renderScenery()}
         {content}
       </View>
     );
@@ -59,6 +61,14 @@ class MainScreen extends React.Component {
     );
   }
 
+  _renderScenery = () => {
+    return (
+      <Image
+        source={require('../assets/foreground.png')}
+        style={styles.foregroundImage} />
+    );
+  }
+
   _formatPrice = (price) => {
     return price.toFixed(2);
   }
@@ -71,6 +81,7 @@ class MainScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#7398f2',
   },
   cash: {
     position: 'absolute',
@@ -94,6 +105,14 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     padding: 8,
     margin: 8,
+  },
+  foregroundImage: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    width: 512,
+    height: 128,
+    resizeMode: 'contain',
   },
 });
 
