@@ -30,7 +30,7 @@ export default class ActionMenu extends React.Component {
   }
 
   _onPressPunch = () => {
-    Store.dispatch({ type: 'UPDATE_STATUS', status: 'finished' });
+    Store.dispatch({ type: 'PUNCH_IN_FACE' });
   }
 }
 

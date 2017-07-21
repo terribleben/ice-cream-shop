@@ -7,16 +7,18 @@ const initialState = {
 
 const reduce = (state, action) => {
   switch (action.type) {
-  case 'UPDATE_STATUS':
+  case 'PUNCH_IN_FACE':
     return {
       ...state,
-      status: action.status,
+      status: 'over',
     };
   case 'SERVE_ORDER':
     return {
       ...state,
       cash: state.cash + action.price,
     };
+  case 'RESTART':
+    return initialState;
   default:
     return state;
   }

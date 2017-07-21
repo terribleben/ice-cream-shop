@@ -4,18 +4,38 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
 import ActionMenu from '../components/ActionMenu';
+import Store from '../redux/Store';
 
 class MainScreen extends React.Component {
   render() {
+    let content;
+    switch (this.props.status) {
+    case 'started':
+      content = this.renderGameStarted();
+      break;
+    case 'over': default:
+      content = this.renderGameOver();
+      break;
+    }
+
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
+        {content}
+      </View>
+    );
+  }
+
+  renderGameStarted = () => {
+    return (
+      <View>
         <ActionMenu style={styles.actionMenu} />
         <Text style={styles.cash}>
           Cash: ${this.props.cash}
@@ -23,13 +43,28 @@ class MainScreen extends React.Component {
       </View>
     );
   }
+
+  renderGameOver = () => {
+    return (
+      <View style={styles.gameOverContainer}>
+        <Text>
+          You were immediately arrested for assulting a customer
+        </Text>
+        <TouchableHighlight onPress={this._onPressRestart} style={styles.restartButton}>
+          <Text>Try Again</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+
+  _onPressRestart = () => {
+    Store.dispatch({ type: 'RESTART' });
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   cash: {
     position: 'absolute',
@@ -42,6 +77,17 @@ const styles = StyleSheet.create({
     top: 12,
     width: 180,
     height: Dimensions.get('window').height - 24,
+  },
+  gameOverContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  restartButton: {
+    borderWidth: 1,
+    borderColor: '#000000',
+    padding: 8,
+    margin: 8,
   },
 });
 
