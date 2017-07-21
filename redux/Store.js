@@ -23,7 +23,7 @@ function createRandomOrder() {
 }
 
 const initialState = {
-  status: 'started',
+  status: 'intro',
   cash: 0,
   orderNumber: 0,
   order: createRandomOrder(),
@@ -42,6 +42,11 @@ const reduce = (state, action) => {
       cash: state.cash + action.price,
       orderNumber: state.orderNumber + 1,
       order: createRandomOrder(),
+    };
+  case 'START':
+    return {
+      ...state,
+      status: 'started',
     };
   case 'RESTART':
     let blankState = initialState;

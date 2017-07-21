@@ -5,8 +5,8 @@ import {
 
 import { AppLoading } from 'expo';
 import cacheAssetsAsync from './assets/cacheAssetsAsync';
+import GameController from './GameController';
 import { Provider } from 'react-redux';
-import MainScreen from './screens/MainScreen';
 import Store from './redux/Store';
 
 export default class App extends React.Component {
@@ -24,6 +24,7 @@ export default class App extends React.Component {
       images: [
         require('./assets/customer.png'),
         require('./assets/foreground.png'),
+        require('./assets/menu.png'),
         require('./assets/moreground.png'),
       ],
     });
@@ -40,7 +41,7 @@ export default class App extends React.Component {
     }
     return (
       <Provider store={Store}>
-        <MainScreen />
+        <GameController />
       </Provider>
     );
   }
