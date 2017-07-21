@@ -36,9 +36,11 @@ class MainScreen extends React.Component {
   renderGameStarted = () => {
     return (
       <View>
-        <ActionMenu style={styles.actionMenu} />
+        <ActionMenu
+          style={styles.actionMenu}
+          order={this.props.order} />
         <Text style={styles.cash}>
-          Cash: ${this.props.cash}
+          Cash: ${this._formatPrice(this.props.cash)}
         </Text>
       </View>
     );
@@ -55,6 +57,10 @@ class MainScreen extends React.Component {
         </TouchableHighlight>
       </View>
     );
+  }
+
+  _formatPrice = (price) => {
+    return price.toFixed(2);
   }
 
   _onPressRestart = () => {
@@ -91,4 +97,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect((state) => ({ status: state.status, cash: state.cash }))(MainScreen);
+export default connect((state) => ({
+  status: state.status,
+  cash: state.cash,
+  order: state.order,
+}))(MainScreen);

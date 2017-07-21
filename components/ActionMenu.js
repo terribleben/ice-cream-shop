@@ -10,10 +10,11 @@ import Store from '../redux/Store';
 
 export default class ActionMenu extends React.Component {
   render() {
+    let { order } = this.props;
     return (
       <View style={[styles.container, this.props.style]}>
         <Text style={styles.instructions}>
-          Ernesto would like a chocolate eclair
+          {order.customerName} would like a {order.item}
         </Text>
         <TouchableHighlight style={styles.button} onPress={this._onPressServe}>
           <Text>Serve Order</Text>
@@ -26,7 +27,7 @@ export default class ActionMenu extends React.Component {
   }
 
   _onPressServe = () => {
-    Store.dispatch({ type: 'SERVE_ORDER', price: 1.95 });
+    Store.dispatch({ type: 'SERVE_ORDER', price: this.props.order.price });
   }
 
   _onPressPunch = () => {
