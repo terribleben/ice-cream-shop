@@ -14,7 +14,7 @@ export default class ActionMenu extends React.Component {
     return (
       <View style={[styles.container, this.props.style]}>
         <Text style={styles.instructions}>
-          {order.customerName} would like a {order.item}
+          {order.customerName} would like {order.item}
         </Text>
         {this._renderButton('Serve Order', this._onPressServe)}
         {this._renderButton('Punch in Face', this._onPressPunch)}

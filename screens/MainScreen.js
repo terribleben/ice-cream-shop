@@ -62,11 +62,14 @@ class MainScreen extends React.Component {
   renderGameOver = () => {
     return (
       <View style={styles.gameOverContainer}>
-        <Text>
-          You were immediately arrested for assulting a customer
+        <Text style={styles.gameOverText}>
+          You were immediately arrested.
+        </Text>
+        <Text style={styles.gameOverScore}>
+          You made ${this._formatPrice(this.props.cash)}!
         </Text>
         <TouchableHighlight onPress={this._onPressRestart} style={styles.restartButton}>
-          <Text>Try Again</Text>
+          <Text>Post Bail</Text>
         </TouchableHighlight>
       </View>
     );
@@ -120,10 +123,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  gameOverText: {
+    fontSize: 24,
+    marginBottom: 16,
+    color: '#ffffff',
+  },
+  gameOverScore: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
   restartButton: {
-    borderWidth: 1,
-    borderColor: '#000000',
-    padding: 8,
+    backgroundColor: '#ffffff',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     margin: 8,
   },
 });
