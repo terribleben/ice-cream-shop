@@ -16,13 +16,20 @@ export default class ActionMenu extends React.Component {
         <Text style={styles.instructions}>
           {order.customerName} would like a {order.item}
         </Text>
-        <TouchableHighlight style={styles.button} onPress={this._onPressServe}>
-          <Text>Serve Order</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.button} onPress={this._onPressPunch}>
-          <Text>Punch in Face</Text>
-        </TouchableHighlight>
+        {this._renderButton('Serve Order', this._onPressServe)}
+        {this._renderButton('Punch in Face', this._onPressPunch)}
       </View>
+    );
+  }
+
+  _renderButton = (text, onPress) => {
+    return (
+      <TouchableHighlight
+        style={styles.button}
+        onPress={onPress}
+        underlayColor="#f273a9">
+        <Text style={styles.buttonText}>{text}</Text>
+      </TouchableHighlight>
     );
   }
 
@@ -37,16 +44,23 @@ export default class ActionMenu extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
+    paddingTop: 12,
+    paddingHorizontal: 8,
     backgroundColor: '#dddddd',
+    borderRadius: 6,
   },
   instructions: {
-    marginBottom: 8,
+    marginBottom: 16,
   },
   button: {
     backgroundColor: '#ffffff',
     justifyContent: 'center',
-    padding: 4,
+    alignItems: 'center',
+    paddingHorizontal: 4,
+    paddingVertical: 8,
     margin: 4,
+  },
+  buttonText: {
+    fontSize: 12,
   },
 });

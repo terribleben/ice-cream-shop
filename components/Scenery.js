@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const CUSTOMER_SPACING = SCREEN_WIDTH / 5;
+const CUSTOMER_SPACING = SCREEN_WIDTH / 6;
 
 export default class Scenery extends React.Component {
   state = {
@@ -39,14 +39,14 @@ export default class Scenery extends React.Component {
     Animated.timing(this.state.customerXOffset, {
       easing: Easing.out(Easing.exp),
       toValue: this._customerXOffsetVal,
-      duration: 1000,
+      duration: 1500,
       useNativeDriver: true,
     }).start();
   }
 
   _renderCustomers = () => {
     let initialCustomerX = [];
-    for (let xx = 0; xx < SCREEN_WIDTH; xx += CUSTOMER_SPACING) {
+    for (let xx = -CUSTOMER_SPACING; xx < SCREEN_WIDTH; xx += CUSTOMER_SPACING) {
       initialCustomerX.push(xx);
     }
     
@@ -55,7 +55,7 @@ export default class Scenery extends React.Component {
         {initialCustomerX.map(x => {
           let xCompensate = x;
           while (xCompensate + this._customerXOffsetVal > SCREEN_WIDTH) {
-            xCompensate -= SCREEN_WIDTH;
+            xCompensate -= SCREEN_WIDTH + CUSTOMER_SPACING;
           }
           return this._renderCustomer(x, Animated.add(xCompensate, this.state.customerXOffset));
         })}

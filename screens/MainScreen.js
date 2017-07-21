@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 12,
     top: 12,
+    fontWeight: '700',
   },
   actionMenu: {
     position: 'absolute',

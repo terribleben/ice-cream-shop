@@ -1,14 +1,24 @@
 import { createStore } from 'redux';
 
-const customers = ['Alice', 'Bob', 'Ernesto'];
-const items = ['rocky road', 'mint chip'];
-const prices = [1.95, 2.95, 3.95];
+const customers = [
+  'Gwendoline', 'Sigmund', 'Zed', 'Bartholomew',
+  'Nestor', 'Remington', 'Harry', 'Gertrude',
+  'Mildred', 'Petunia',
+];
+const items = [
+  'a chocolate sundae',
+  'a rocky road cone',
+  'a vanilla scoop',
+  'a neapolitan bowl',
+  'a fudge bowl',
+  'a coffee',
+];
 
 function createRandomOrder() {
   return {
     customerName: customers[Math.floor(Math.random() * customers.length)],
     item: items[Math.floor(Math.random() * items.length)],
-    price: prices[Math.floor(Math.random() * prices.length)],
+    price: Math.ceil(Math.random() * 5) + 0.95,
   };
 }
 
