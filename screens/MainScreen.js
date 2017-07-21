@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dimensions,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -13,11 +14,12 @@ import ActionMenu from '../components/ActionMenu';
 class MainScreen extends React.Component {
   render() {
     return (
-      <View style={[
-              styles.container,
-              { backgroundColor: (this.props.status === 'started') ? '#ff0000' : '#ffffff' },
-            ]}>
+      <View style={styles.container}>
+        <StatusBar hidden={true} />
         <ActionMenu style={styles.actionMenu} />
+        <Text style={styles.cash}>
+          Cash: ${this.props.cash}
+        </Text>
       </View>
     );
   }
@@ -29,6 +31,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cash: {
+    position: 'absolute',
+    right: 12,
+    top: 12,
+  },
   actionMenu: {
     position: 'absolute',
     left: 12,
@@ -38,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect((state) => ({ status: state.status }))(MainScreen);
+export default connect((state) => ({ status: state.status, cash: state.cash }))(MainScreen);

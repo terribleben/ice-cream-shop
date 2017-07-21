@@ -2,6 +2,7 @@ import { createStore } from 'redux';
 
 const initialState = {
   status: 'started',
+  cash: 0,
 };
 
 const reduce = (state, action) => {
@@ -10,7 +11,12 @@ const reduce = (state, action) => {
     return {
       ...state,
       status: action.status,
-    }
+    };
+  case 'SERVE_ORDER':
+    return {
+      ...state,
+      cash: state.cash + action.price,
+    };
   default:
     return state;
   }

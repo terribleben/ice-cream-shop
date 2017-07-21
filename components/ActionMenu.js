@@ -15,7 +15,7 @@ export default class ActionMenu extends React.Component {
         <Text style={styles.instructions}>
           Ernesto would like a chocolate eclair
         </Text>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight style={styles.button} onPress={this._onPressServe}>
           <Text>Serve Order</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button} onPress={this._onPressPunch}>
@@ -23,6 +23,10 @@ export default class ActionMenu extends React.Component {
         </TouchableHighlight>
       </View>
     );
+  }
+
+  _onPressServe = () => {
+    Store.dispatch({ type: 'SERVE_ORDER', price: 1.95 });
   }
 
   _onPressPunch = () => {
