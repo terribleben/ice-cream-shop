@@ -30,7 +30,7 @@ class MainScreen extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
-        <Scenery />
+        <Scenery orderNumber={this.props.orderNumber} />
         {content}
       </View>
     );
@@ -104,5 +104,6 @@ const styles = StyleSheet.create({
 export default connect((state) => ({
   status: state.status,
   cash: state.cash,
+  orderNumber: state.orderNumber,
   order: state.order,
 }))(MainScreen);

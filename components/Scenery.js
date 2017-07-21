@@ -1,12 +1,28 @@
 import React from 'react';
 import {
+  Animated,
+  Easing,
   Dimensions,
   Image,
   StyleSheet,
   View,
 } from 'react-native';
 
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const CUSTOMER_SPACING = SCREEN_WIDTH / 5;
+
 export default class Scenery extends React.Component {
+  state = {
+    customerXOffset: new Animated.Value(0),
+  };
+  _customerXOffsetVal = 0;
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.orderNumber !== this.props.orderNumber) {
+      this._animateCustomers();
+    }
+  }
+  
   render() {
     return (
       <View style={styles.container}>
@@ -18,12 +34,30 @@ export default class Scenery extends React.Component {
     );
   }
 
+  _animateCustomers() {
+    this._customerXOffsetVal += CUSTOMER_SPACING;
+    Animated.timing(this.state.customerXOffset, {
+      easing: Easing.out(Easing.exp),
+      toValue: this._customerXOffsetVal,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }
+
   _renderCustomers = () => {
-    const customerX = [0, 150, 300, 450, 600];
+    let initialCustomerX = [];
+    for (let xx = 0; xx < SCREEN_WIDTH; xx += CUSTOMER_SPACING) {
+      initialCustomerX.push(xx);
+    }
+    
     return (
       <View>
-        {customerX.map(x => {
-          return this._renderCustomer(x, x);
+        {initialCustomerX.map(x => {
+          let xCompensate = x;
+          while (xCompensate + this._customerXOffsetVal > SCREEN_WIDTH) {
+            xCompensate -= SCREEN_WIDTH;
+          }
+          return this._renderCustomer(x, Animated.add(xCompensate, this.state.customerXOffset));
         })}
       </View>
     );
@@ -31,7 +65,7 @@ export default class Scenery extends React.Component {
 
   _renderCustomer = (id, x) => {
     return (
-      <Image
+      <Animated.Image
         key={id}
         source={require('../assets/customer.png')}
         style={[
