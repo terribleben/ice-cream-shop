@@ -77,7 +77,7 @@ class MainScreen extends React.Component {
           style={[ styles.actionMenu, { height: this.state.dimensions.height - 24 }]}
           order={this.props.order} />
         <Text style={styles.cash}>
-          Cash: ${this._formatPrice(this.state.cashForDisplay)}
+          ${this._formatPrice(this.state.cashForDisplay)}
         </Text>
       </View>
     );
@@ -92,7 +92,10 @@ class MainScreen extends React.Component {
         <Text style={styles.gameOverScore}>
           You made ${this._formatPrice(this.props.cash)}!
         </Text>
-        <TouchableHighlight onPress={this._onPressRestart} style={styles.restartButton}>
+        <TouchableHighlight
+          onPress={this._onPressRestart}
+          underlayColor="#f96aeb"
+          style={styles.restartButton}>
           <Text>Post Bail</Text>
         </TouchableHighlight>
       </View>
@@ -132,7 +135,7 @@ const styles = StyleSheet.create({
     right: 12,
     top: 12,
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 24,
     color: '#ffffff',
   },
   actionMenu: {
@@ -160,6 +163,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     margin: 8,
+    marginBottom: 32,
   },
 });
 

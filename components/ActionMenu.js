@@ -16,6 +16,9 @@ export default class ActionMenu extends React.Component {
         <Text style={styles.instructions}>
           {order.customerName} would like {order.item}
         </Text>
+        <Text style={styles.price}>
+          ${order.price}
+        </Text>
         {this._renderButton('Serve Order', this._onPressServe)}
         {this._renderButton('Punch in Face', this._onPressPunch)}
       </View>
@@ -27,7 +30,7 @@ export default class ActionMenu extends React.Component {
       <TouchableHighlight
         style={styles.button}
         onPress={onPress}
-        underlayColor="#f273a9">
+        underlayColor="#f96aeb">
         <Text style={styles.buttonText}>{text}</Text>
       </TouchableHighlight>
     );
@@ -50,14 +53,21 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   instructions: {
+    fontSize: 14,
     marginBottom: 16,
+  },
+  price: {
+    fontSize: 16,
+    marginBottom: 16,
+    textAlign: 'center',
+    fontWeight: '700',
   },
   button: {
     backgroundColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 4,
-    paddingVertical: 8,
+    paddingVertical: 12,
     margin: 4,
   },
   buttonText: {

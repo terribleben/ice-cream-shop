@@ -28,6 +28,7 @@ export default class MenuScreen extends React.Component {
           style={styles.menuImage} />
         <TouchableHighlight
           style={styles.startButton}
+          underlayColor="#f96aeb"
           onPress={this._onPressStart}>
           <Text style={styles.startButtonText}>Clock In</Text>
         </TouchableHighlight>

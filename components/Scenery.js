@@ -97,6 +97,7 @@ export default class Scenery extends React.Component {
         source={require('../assets/customer.png')}
         style={[
           styles.customer,
+          { top: this.state.dimensions.height - 128 },
           { transform: [{ translateX: x }] },
         ]} />
     );
@@ -127,7 +128,6 @@ const styles = StyleSheet.create({
   customer: {
     position: 'absolute',
     left: 0,
-    top: 200,
     width: 64,
     height: 128,
     resizeMode: 'contain',
