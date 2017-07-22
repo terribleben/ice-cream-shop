@@ -1,13 +1,13 @@
 {
   "expo": {
     "name": "Ice Cream Shop",
-    "description": "An exercise in discipline",
+    "description": "An exercise in discipline. https://github.com/terribleben/ice-cream-shop",
     "slug": "ice-cream-shop",
     "privacy": "public",
     "sdkVersion": "19.0.0",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "landscape",
-    "primaryColor": "#cccccc",
+    "primaryColor": "#f96aeb",
     "icon": "./assets/icons/app-icon.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
