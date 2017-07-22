@@ -14,11 +14,35 @@ import { connect } from 'react-redux';
 import ActionMenu from '../components/ActionMenu';
 import Scenery from '../components/Scenery';
 import Store from '../redux/Store';
+const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+
+function getHackDimensions() {
+  const dimensions = Dimensions.get('window');
+  if (dimensions.width > dimensions.height) {
+    return { width: dimensions.width, height: dimensions.height };
+  } else {
+    return { width: dimensions.height, height: dimensions.width };
+  }
+}
 
 class MainScreen extends React.Component {
   state = {
     cashForDisplay: 0,
+    dimensions: getHackDimensions(),
   };
+
+  componentDidMount() {
+    this._dimensionsListener = RCTDeviceEventEmitter.addListener('didUpdateDimensions', () => {
+      this.setState({ dimensions: getHackDimensions() });
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._dimensionsListener) {
+      this._dimensionsListener.remove();
+      this._dimensionsListener = null;
+    }
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.cash !== this.props.cash) {
@@ -50,7 +74,7 @@ class MainScreen extends React.Component {
     return (
       <View>
         <ActionMenu
-          style={styles.actionMenu}
+          style={[ styles.actionMenu, { height: this.state.dimensions.height - 24 }]}
           order={this.props.order} />
         <Text style={styles.cash}>
           Cash: ${this._formatPrice(this.state.cashForDisplay)}
@@ -116,7 +140,6 @@ const styles = StyleSheet.create({
     left: 12,
     top: 12,
     width: 180,
-    height: Dimensions.get('window').height - 24,
   },
   gameOverContainer: {
     flex: 1,
