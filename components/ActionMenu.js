@@ -10,7 +10,25 @@ import Store from '../redux/Store';
 
 export default class ActionMenu extends React.Component {
   render() {
-    let { order } = this.props;
+    let { order, status } = this.props;
+    if (status === 'serving') {
+      return this._renderServing(order);
+    } else {
+      return this._renderOrder(order);
+    }
+  }
+
+  _renderServing = (order) => {
+    return (
+      <View style={[styles.container, this.props.style]}>
+        <Text style={styles.instructions}>
+          {order.response}
+        </Text>
+      </View>
+    );
+  }
+
+  _renderOrder = (order) => {
     return (
       <View style={[styles.container, this.props.style]}>
         <Text style={styles.instructions}>
@@ -53,7 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   instructions: {
-    fontSize: 14,
+    fontSize: 16,
     marginBottom: 16,
   },
   price: {

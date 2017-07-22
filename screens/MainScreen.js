@@ -53,7 +53,7 @@ class MainScreen extends React.Component {
   render() {
     let content;
     switch (this.props.status) {
-    case 'started':
+    case 'started': case 'serving':
       content = this.renderGameStarted();
       break;
     case 'over': default:
@@ -75,7 +75,8 @@ class MainScreen extends React.Component {
       <View>
         <ActionMenu
           style={[ styles.actionMenu, { height: this.state.dimensions.height - 24 }]}
-          order={this.props.order} />
+          order={this.props.order}
+          status={this.props.status} />
         <Text style={styles.cash}>
           ${this._formatPrice(this.state.cashForDisplay)}
         </Text>
@@ -84,13 +85,16 @@ class MainScreen extends React.Component {
   }
 
   renderGameOver = () => {
+    const winnings = (this.props.cash > 0)
+          ? `\$${this._formatPrice(this.props.cash)}!`
+          : 'no money';
     return (
       <View style={styles.gameOverContainer}>
         <Text style={styles.gameOverText}>
-          You were immediately arrested.
+          You were arrested
         </Text>
         <Text style={styles.gameOverScore}>
-          You made ${this._formatPrice(this.props.cash)}!
+          You made {winnings}
         </Text>
         <TouchableHighlight
           onPress={this._onPressRestart}
@@ -113,8 +117,11 @@ class MainScreen extends React.Component {
   _animateCash = () => {
     if (this.props.cash === 0) {
       this.setState({ cashForDisplay: 0 });
-    } else if (Math.abs(this.props.cash - this.state.cashForDisplay) < 0.1) {
+    } else if (Math.abs(this.props.cash - this.state.cashForDisplay) < 0.02) {
       this.setState({ cashForDisplay: this.props.cash });
+      if (this.props.status === 'serving') {
+        Store.dispatch({ type: 'FINISH_ORDER' });
+      }
     } else {
       this.setState({
         cashForDisplay: this.state.cashForDisplay + 0.1 * (this.props.cash - this.state.cashForDisplay),
@@ -151,12 +158,13 @@ const styles = StyleSheet.create({
   },
   gameOverText: {
     fontSize: 24,
-    marginBottom: 16,
+    marginBottom: 12,
     color: '#ffffff',
   },
   gameOverScore: {
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 16,
+    color: '#ffffff',
   },
   restartButton: {
     backgroundColor: '#ffffff',

@@ -11,10 +11,10 @@ class GameController extends React.Component {
   render() {
     let content;
     switch (this.props.status) {
-    case 'started': case 'over':
-      return (<MainScreen />);
-    case 'intro': default:
+    case 'intro':
       return (<MenuScreen />);
+    case 'started': default:
+      return (<MainScreen />);
     }
   }
 }

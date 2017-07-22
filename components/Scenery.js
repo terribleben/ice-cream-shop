@@ -54,9 +54,9 @@ export default class Scenery extends React.Component {
     const { CUSTOMER_SPACING } = this._getLayoutConstants();
     this._customerXOffsetVal += CUSTOMER_SPACING;
     Animated.timing(this.state.customerXOffset, {
-      easing: Easing.out(Easing.exp),
+      easing: Easing.inOut(Easing.quad),
       toValue: this._customerXOffsetVal,
-      duration: 1500,
+      duration: 2000,
       useNativeDriver: true,
     }).start();
   }

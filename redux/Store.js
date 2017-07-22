@@ -4,7 +4,8 @@ const customers = [
   'Gwendoline', 'Sigmund', 'Zed', 'Bartholomew',
   'Nestor', 'Remington', 'Harry', 'Gertrude',
   'Mildred', 'Petunia', 'Sven', 'Clementine',
-  'Harold', 'Buster', 'Joe', 'Marjorie',
+  'Harold', 'Buster', 'Joe', 'Marjorie', 'Randolph',
+  'Gilbert', 'Gloria', 'Lola', 'Lionel',
 ];
 const items = [
   'a chocolate sundae',
@@ -28,6 +29,40 @@ const items = [
   'a double vanilla crunch',
   'some fruit',
   'to sample the chocolate',
+  'the gluten free thing',
+  'the weird floral flavor',
+  'some quantity of almond topping',
+  'napkins',
+  'two scoops of lemon flavor',
+  'orange sherbert',
+  'double chocolate super cake',
+  'the quadruple chocolate nightmare',
+  'a frosty treat',
+  'the italian chocolate variety',
+  'grapefruits',
+];
+
+const responses = [
+  'son',
+  'pardner',
+  'bucko',
+  'pal',
+  'neighborino',
+  'buddy',
+  'you',
+  'you hip cat',
+  'bro',
+  'bromigo',
+  'duder',
+  'young man',
+  'fella',
+  'young one',
+  'bud',
+  'bruh',
+  'bruu',
+  'boy',
+  'young sir',
+  'my good man',
 ];
 
 function createRandomOrder() {
@@ -35,6 +70,7 @@ function createRandomOrder() {
     customerName: customers[Math.floor(Math.random() * customers.length)],
     item: items[Math.floor(Math.random() * items.length)],
     price: Math.ceil(Math.random() * 5) + 0.95,
+    response: 'Good job ' + responses[Math.floor(Math.random() * responses.length)],
   };
 }
 
@@ -55,11 +91,12 @@ const reduce = (state, action) => {
   case 'SERVE_ORDER':
     return {
       ...state,
+      status: 'serving',
       cash: state.cash + action.price,
       orderNumber: state.orderNumber + 1,
       order: createRandomOrder(),
     };
-  case 'START':
+  case 'START': case 'FINISH_ORDER':
     return {
       ...state,
       status: 'started',
