@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ice-cream-shop",
+    "name": "Ice Cream Shop",
     "description": "An exercise in discipline",
     "slug": "ice-cream-shop",
     "privacy": "public",
@@ -11,7 +11,9 @@
     "icon": "./assets/icons/app-icon.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
-      "hideExponentText": false
+      "backgroundColor": "#7398f2",
+      "hideExponentText": true,
+      "loadingIndicatorStyleExperimental": "light"
     },
     "packagerOpts": {
       "assetExts": ["ttf"]
