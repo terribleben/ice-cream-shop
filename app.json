@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Ice Cream Shop",
-    "description": "An exercise in discipline. https://github.com/terribleben/ice-cream-shop",
+    "description": "Serve the ice creams to get the highest score",
     "slug": "ice-cream-shop",
     "privacy": "public",
     "sdkVersion": "19.0.0",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "landscape",
     "primaryColor": "#f96aeb",
     "icon": "./assets/icons/app-icon.png",

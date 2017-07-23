@@ -101,7 +101,7 @@ class MainScreen extends React.Component {
           onPress={this._onPressRestart}
           underlayColor="#f96aeb"
           style={styles.restartButton}>
-          <Text>Post Bail</Text>
+          <Text style={styles.restartText}>Post Bail</Text>
         </TouchableHighlight>
       </View>
     );
@@ -171,10 +171,13 @@ const styles = StyleSheet.create({
   },
   restartButton: {
     backgroundColor: '#ffffff',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     margin: 8,
     marginBottom: 32,
+  },
+  restartText: {
+    fontFamily: Constants.Font,
   },
 });
 

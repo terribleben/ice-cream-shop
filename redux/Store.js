@@ -5,7 +5,9 @@ const customers = [
   'Nestor', 'Remington', 'Harry', 'Gertrude',
   'Mildred', 'Petunia', 'Sven', 'Clementine',
   'Harold', 'Buster', 'Joe', 'Marjorie', 'Randolph',
-  'Gilbert', 'Gloria', 'Lola', 'Lionel',
+  'Gilbert', 'Gloria', 'Lola', 'Lionel', 'Stu',
+  'Betsy', 'Todd', 'Dirk', 'Bertha', 'Olga', 'Agatha',
+  'Agnes', 'Gus', 'Ned',
 ];
 const items = [
   'a chocolate sundae',
@@ -40,6 +42,24 @@ const items = [
   'a frosty treat',
   'the italian chocolate variety',
   'grapefruits',
+  'just a bunch of cones with no ice cream',
+  'lemon sorbet with a little bit of chocolate',
+  'the expensive kind',
+  'a silly kids flavor',
+  'diet ice cream',
+  'two sundaes extra fudge',
+  'more napkins',
+  'no vegetables',
+  'cups for water',
+  'two scoops of strawberry ice cream',
+  'a vanilla cup with berries',
+  'an extra huge serving of peanut butter',
+  'a frosty surprise',
+  'a double frosty surprise',
+  'a fruity frosty cone',
+  'something flavored like bubble gum',
+  'a french vanilla bucket',
+  'a triple frosty crunch bucket',
 ];
 
 const responses = [

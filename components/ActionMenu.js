@@ -35,11 +35,13 @@ export default class ActionMenu extends React.Component {
         <Text style={styles.instructions}>
           {order.customerName} would like {order.item}
         </Text>
-        <Text style={styles.price}>
-          ${order.price}
-        </Text>
-        {this._renderButton('serve order', this._onPressServe)}
-        {this._renderButton('punch in face', this._onPressPunch)}
+        <View style={styles.actionContainer}>
+          <Text style={styles.price}>
+            ${order.price}
+          </Text>
+          {this._renderButton('serve order', this._onPressServe)}
+          {this._renderButton('punch in face', this._onPressPunch)}
+        </View>
       </View>
     );
   }
@@ -66,15 +68,19 @@ export default class ActionMenu extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 12,
-    paddingHorizontal: 8,
+    padding: 8,
     backgroundColor: '#dddddd',
     borderRadius: 6,
+  },
+  actionContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   instructions: {
     fontSize: 16,
     marginBottom: 16,
     fontFamily: Constants.Font,
+    textAlign: 'center',
   },
   price: {
     fontSize: 16,
