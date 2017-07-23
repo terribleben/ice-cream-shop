@@ -10,17 +10,28 @@ import {
 import Store from '../redux/Store';
 
 export default class MenuScreen extends React.Component {
+  state = {
+    isButtonLit: false,
+  };
+  
   _mounted = false;
   
   componentDidMount() {
-    _mounted = true;
+    this._mounted = true;
+    this._startAnimating();
   }
 
   componentWillUnmount() {
-    _mounted = false;
+    this._mounted = false;
   }
   
   render() {
+    let buttonStyle;
+    if (this.state.isButtonLit) {
+      buttonStyle = [styles.startButtonText, { color: '#fee1fb' }];
+    } else {
+      buttonStyle = styles.startButtonText;
+    }
     return (
       <View style={styles.container}>
         <Image
@@ -30,7 +41,7 @@ export default class MenuScreen extends React.Component {
           style={styles.startButton}
           underlayColor="#f96aeb"
           onPress={this._onPressStart}>
-          <Text style={styles.startButtonText}>Clock In</Text>
+          <Text style={buttonStyle}>Clock In</Text>
         </TouchableHighlight>
       </View>
     );
@@ -38,6 +49,17 @@ export default class MenuScreen extends React.Component {
 
   _onPressStart = () => {
     Store.dispatch({ type: 'START' });
+  }
+
+  _startAnimating = () => {
+    this._timer = setInterval(() => {
+      if (this._mounted) {
+        this.setState({ isButtonLit: !this.state.isButtonLit });
+      } else {
+        clearInterval(this._timer);
+        this._timer = null;
+      }
+    }, 500);
   }
 }
 
@@ -49,7 +71,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   startButton: {
-    padding: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
   startButtonText: {
     color: '#ffffff',
