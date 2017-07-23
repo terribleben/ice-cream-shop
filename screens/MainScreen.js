@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 
 import ActionMenu from '../components/ActionMenu';
+import Constants from '../util/Constants';
 import Scenery from '../components/Scenery';
 import Store from '../redux/Store';
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
@@ -160,11 +161,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 12,
     color: '#ffffff',
+    fontFamily: Constants.Font,
   },
   gameOverScore: {
     fontSize: 16,
     marginBottom: 16,
     color: '#ffffff',
+    fontFamily: Constants.Font,
   },
   restartButton: {
     backgroundColor: '#ffffff',

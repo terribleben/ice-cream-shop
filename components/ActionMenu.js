@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 
+import Constants from '../util/Constants';
 import Store from '../redux/Store';
 
 export default class ActionMenu extends React.Component {
@@ -37,8 +38,8 @@ export default class ActionMenu extends React.Component {
         <Text style={styles.price}>
           ${order.price}
         </Text>
-        {this._renderButton('Serve Order', this._onPressServe)}
-        {this._renderButton('Punch in Face', this._onPressPunch)}
+        {this._renderButton('serve order', this._onPressServe)}
+        {this._renderButton('punch in face', this._onPressPunch)}
       </View>
     );
   }
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
   instructions: {
     fontSize: 16,
     marginBottom: 16,
+    fontFamily: Constants.Font,
   },
   price: {
     fontSize: 16,
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   buttonText: {
-    fontSize: 12,
+    fontSize: 14,
+    fontFamily: Constants.Font,
   },
 });

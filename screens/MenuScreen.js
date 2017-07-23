@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import Store from '../redux/Store';
+import Constants from '../util/Constants';
 
 export default class MenuScreen extends React.Component {
   state = {
@@ -41,7 +42,7 @@ export default class MenuScreen extends React.Component {
           style={styles.startButton}
           underlayColor="#f96aeb"
           onPress={this._onPressStart}>
-          <Text style={buttonStyle}>Clock In</Text>
+          <Text style={buttonStyle}>clock in</Text>
         </TouchableHighlight>
       </View>
     );
@@ -76,12 +77,14 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     color: '#ffffff',
-    fontSize: 24,
+    fontSize: 48,
     fontWeight: '700',
+    fontFamily: Constants.Font,
   },
   menuImage: {
     width: 512,
     height: 256,
     resizeMode: 'contain',
+    marginBottom: -36,
   },
 });

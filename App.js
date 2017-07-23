@@ -27,6 +27,9 @@ export default class App extends React.Component {
         require('./assets/menu.png'),
         require('./assets/moreground.png'),
       ],
+      fonts: [
+        { 'Inconsolata': require('./assets/Inconsolata.otf') },
+      ],
     });
     } catch (e) {
       console.log('error loading assets:', e.message);
