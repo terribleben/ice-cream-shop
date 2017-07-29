@@ -5,7 +5,7 @@
     "slug": "ice-cream-shop",
     "privacy": "public",
     "sdkVersion": "19.0.0",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "landscape",
     "primaryColor": "#f96aeb",
     "icon": "./assets/icons/app-icon.png",

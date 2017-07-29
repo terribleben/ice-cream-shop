@@ -6,17 +6,41 @@ import {
   Text,
 } from 'react-native';
 
+import Constants from '../util/Constants';
+
 const messages = [
-  'BONUS TIP',
+  'BONUS DOLLAR',
+  'CIGARETTE BREAK',
   'EXTRA LIFE',
-  'LEVEL THREE',
+  'LEVEL FOUR',
+  'WHISKEY SHOT',
+  'DANGER ZONE',
+  'RAGE STAGE',
+  'BOSS MODE',
+  'SECRET POWER',
+  'MAKE IT RAIN',
+  'GRAPE FLAVOR',
+  'WHY?',
+  'GO HOME',
 ];
 
 // i really meant jumbotron
 export default class Megatron extends React.Component {
   state = {
     transition: new Animated.Value(1),
+    isLit: false,
   };
+
+  _mounted = false;
+  
+  componentDidMount() {
+    this._mounted = true;
+    this._startFlashing();
+  }
+
+  componentWillUnmount() {
+    this._mounted = false;
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.level !== this.props.level) {
@@ -30,19 +54,23 @@ export default class Megatron extends React.Component {
       {
         translateY: this.state.transition.interpolate({
           inputRange: [0, 1],
-          outputRange: [0, -dimensions.height * 2.0],
+          outputRange: [0, -dimensions.height * 3.0],
         }),
       },
     ];
     const message = (level > 0 && level - 1 < messages.length)
           ? messages[level - 1]
-          : 'GRAPE';
+          : 'REALLY?';
+    const litColor = (this.state.isLit)
+          ? { color: Constants.Colors.pink }
+          : null;
     return (
       <Animated.Text
         style={[
           styles.text,
           { top: dimensions.height, width: dimensions.width - 200 },
           { transform },
+          litColor,
         ]}>
         {message}
       </Animated.Text>
@@ -54,9 +82,20 @@ export default class Megatron extends React.Component {
     Animated.timing(this.state.transition, {
       easing: Easing.inOut(Easing.linear),
       toValue: 1,
-      duration: 3000,
-      useNativeDrive: true,
+      duration: 5000,
+      useNativeDriver: true,
     }).start();
+  }
+
+  _startFlashing = () => {
+    this._timer = setInterval(() => {
+      if (this._mounted) {
+        this.setState({ isLit: !this.state.isLit });
+      } else {
+        clearInterval(this._timer);
+        this._timer = null;
+      }
+    }, 500);
   }
 }
 
