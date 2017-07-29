@@ -16,7 +16,7 @@
       "loadingIndicatorStyleExperimental": "light"
     },
     "packagerOpts": {
-      "assetExts": ["ttf", "otf"]
+      "assetExts": ["ttf", "otf", "mp3"]
     },
     "ios": {
       "supportsTablet": false

@@ -31,6 +31,9 @@ export default class App extends React.Component {
       fonts: [
         { 'Inconsolata': require('./assets/Inconsolata.otf') },
       ],
+      sounds: {
+        music: require('./assets/icecream.mp3'),
+      },
     });
     } catch (e) {
       console.log('error loading assets:', e.message);

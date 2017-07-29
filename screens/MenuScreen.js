@@ -9,6 +9,7 @@ import {
 
 import Store from '../redux/Store';
 import Constants from '../util/Constants';
+import SoundManager from '../assets/SoundManager';
 
 export default class MenuScreen extends React.Component {
   state = {
@@ -20,6 +21,10 @@ export default class MenuScreen extends React.Component {
   componentDidMount() {
     this._mounted = true;
     this._startAnimating();
+    SoundManager.loopSoundAsync('music', {
+      volume: 0.8,
+      restart: true,
+    });
   }
 
   componentWillUnmount() {
