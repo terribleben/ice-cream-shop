@@ -65,7 +65,9 @@ class MainScreen extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
-        <Scenery orderNumber={this.props.orderNumber} />
+        <Scenery
+          orderNumber={this.props.orderNumber}
+          level={this.props.level} />
         {content}
       </View>
     );
@@ -99,7 +101,7 @@ class MainScreen extends React.Component {
         </Text>
         <TouchableHighlight
           onPress={this._onPressRestart}
-          underlayColor="#f96aeb"
+          underlayColor={Constants.Colors.pink}
           style={styles.restartButton}>
           <Text style={styles.restartText}>Post Bail</Text>
         </TouchableHighlight>
@@ -184,6 +186,7 @@ const styles = StyleSheet.create({
 export default connect((state) => ({
   status: state.status,
   cash: state.cash,
+  level: state.level,
   orderNumber: state.orderNumber,
   order: state.order,
 }))(MainScreen);

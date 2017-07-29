@@ -51,7 +51,7 @@ export default class ActionMenu extends React.Component {
       <TouchableHighlight
         style={styles.button}
         onPress={onPress}
-        underlayColor="#f96aeb">
+        underlayColor={Constants.Colors.pink}>
         <Text style={styles.buttonText}>{text}</Text>
       </TouchableHighlight>
     );

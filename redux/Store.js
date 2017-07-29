@@ -85,6 +85,19 @@ const responses = [
   'my good man',
 ];
 
+const levelThresholds = [
+  25,
+  100,
+  500,
+  1000,
+  2000,
+  5000,
+  10000,
+  25000,
+  100000,
+  1000000,
+];
+
 function createRandomOrder() {
   return {
     customerName: customers[Math.floor(Math.random() * customers.length)],
@@ -97,6 +110,7 @@ function createRandomOrder() {
 const initialState = {
   status: 'intro',
   cash: 0,
+  level: 0,
   orderNumber: 0,
   order: createRandomOrder(),
 };
@@ -109,10 +123,17 @@ const reduce = (state, action) => {
       status: 'over',
     };
   case 'SERVE_ORDER':
+    const nextCash = state.cash + action.price;
+    let nextLevel = state.level;
+    if (state.level < levelThresholds.length
+        && nextCash >= levelThresholds[state.level]) {
+      nextLevel++;
+    }
     return {
       ...state,
       status: 'serving',
-      cash: state.cash + action.price,
+      cash: nextCash,
+      level: nextLevel,
       orderNumber: state.orderNumber + 1,
       order: createRandomOrder(),
     };
