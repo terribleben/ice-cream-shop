@@ -26,6 +26,7 @@ export default class App extends React.Component {
         require('./assets/foreground.png'),
         require('./assets/menu.png'),
         require('./assets/moreground.png'),
+        require('./assets/star.png'),
       ],
       fonts: [
         { 'Inconsolata': require('./assets/Inconsolata.otf') },

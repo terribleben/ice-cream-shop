@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+import Star from './Star';
 
 export default class Scenery extends React.Component {
   state = {
@@ -46,6 +47,7 @@ export default class Scenery extends React.Component {
         <Image
           source={require('../assets/moreground.png')}
           style={[styles.moregroundImage, { width: this.state.dimensions.width - 480 }]} />
+        {this._renderStars()}
       </View>
     );
   }
@@ -68,6 +70,27 @@ export default class Scenery extends React.Component {
       SCREEN_WIDTH,
       CUSTOMER_SPACING,
     };
+  }
+
+  _renderStars = () => {
+    const { SCREEN_WIDTH } = this._getLayoutConstants();
+    const starIds = [0, 1, 2, 3 , 4];
+    return (
+      <View>
+        {starIds.map(starId => {
+          return (
+            <Star
+              key={starId}
+              orderNumber={this.props.orderNumber}
+              origin={{
+                x: SCREEN_WIDTH - 64,
+                y: 16,
+              }}
+              />
+          );
+        })}
+      </View>
+    );
   }
 
   _renderCustomers = () => {
