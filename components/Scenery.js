@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+import Megatron from './Megatron';
 import Star from './Star';
 
 export default class Scenery extends React.Component {
@@ -40,6 +41,7 @@ export default class Scenery extends React.Component {
   render() {
     return (
       <View style={[styles.container, { width: this.state.dimensions.width, height: this.state.dimensions.height }]}>
+        <Megatron level={this.props.level} dimensions={this.state.dimensions} />
         {this._renderCustomers()}
         <Image
           source={require('../assets/foreground.png')}
@@ -74,7 +76,7 @@ export default class Scenery extends React.Component {
 
   _renderStars = () => {
     const { SCREEN_WIDTH } = this._getLayoutConstants();
-    const starIds = [0, 1, 2, 3 , 4];
+    const starIds = [0, 1, 2, 3, 4];
     return (
       <View>
         {starIds.map(starId => {
@@ -85,8 +87,7 @@ export default class Scenery extends React.Component {
               origin={{
                 x: SCREEN_WIDTH - 64,
                 y: 16,
-              }}
-              />
+              }} />
           );
         })}
       </View>
