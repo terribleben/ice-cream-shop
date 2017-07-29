@@ -21,10 +21,7 @@ export default class MenuScreen extends React.Component {
   componentDidMount() {
     this._mounted = true;
     this._startAnimating();
-    SoundManager.loopSoundAsync('music', {
-      volume: 0.8,
-      restart: true,
-    });
+    this._resetMusicAsync();
   }
 
   componentWillUnmount() {
@@ -66,6 +63,17 @@ export default class MenuScreen extends React.Component {
         this._timer = null;
       }
     }, 500);
+  }
+
+  _resetMusicAsync = async () => {
+    const music = SoundManager.getSound('music');
+    if (music) {
+      await music.setRateAsync(1.0, false);
+      SoundManager.loopSoundAsync('music', {
+        volume: 0.8,
+        restart: true,
+      });
+    }
   }
 }
 

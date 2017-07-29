@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import ActionMenu from '../components/ActionMenu';
 import Constants from '../util/Constants';
 import Scenery from '../components/Scenery';
+import SoundManager from '../assets/SoundManager';
 import Store from '../redux/Store';
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 
@@ -31,8 +32,10 @@ class MainScreen extends React.Component {
     cashForDisplay: 0,
     dimensions: getHackDimensions(),
   };
+  _musicRateCounter = 0;
 
   componentDidMount() {
+    this._musicRateCounter = 0;
     this._dimensionsListener = RCTDeviceEventEmitter.addListener('didUpdateDimensions', () => {
       this.setState({ dimensions: getHackDimensions() });
     });
@@ -48,6 +51,9 @@ class MainScreen extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.cash !== this.props.cash) {
       requestAnimationFrame(this._animateCash);
+    }
+    if (nextProps.orderNumber !== this.props.orderNumber) {
+      this._maybeChangeMusic();
     }
   }
   
@@ -131,6 +137,22 @@ class MainScreen extends React.Component {
       }, () => {
         requestAnimationFrame(this._animateCash);
       });
+    }
+  }
+
+  _maybeChangeMusic = () => {
+    const runway = 7; // don't change music rate in first few orders
+    if (this.props.orderNumber < runway) {
+      return;
+    }
+    const progress = Math.floor((this.props.orderNumber - runway) / 4.0);
+    if (progress != this._musicRateCounter) {
+      this._musicRateCounter = progress;
+      const newRate = Math.max(0.1, 1.0 - (this._musicRateCounter * 0.075));
+      const music = SoundManager.getSound('music');
+      if (music) {
+        music.setRateAsync(newRate, false);
+      }
     }
   }
 }

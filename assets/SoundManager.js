@@ -77,6 +77,10 @@ class SoundManager {
     }
     return;
   }
+
+  getSound = (key) => {
+    return this._sounds[key];
+  }
 }
 
 export default new SoundManager();
