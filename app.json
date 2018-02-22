@@ -4,16 +4,17 @@
     "description": "Serve the ice creams to get the highest score",
     "slug": "ice-cream-shop",
     "privacy": "public",
-    "sdkVersion": "19.0.0",
-    "version": "1.1.0",
+    "sdkVersion": "25.0.0",
+    "version": "1.2.0",
+    "platforms": ["ios", "android"],
+    "githubUrl": "https://github.com/terribleben/ice-cream-shop",
     "orientation": "landscape",
     "primaryColor": "#f96aeb",
     "icon": "./assets/icons/app-icon.png",
-    "loading": {
-      "icon": "./assets/icons/loading-icon.png",
+    "splash": {
+      "image": "./assets/icons/loading-icon.png",
       "backgroundColor": "#7398f2",
-      "hideExponentText": true,
-      "loadingIndicatorStyleExperimental": "light"
+      "resizeMode": "contain"
     },
     "packagerOpts": {
       "assetExts": ["ttf", "otf", "mp3"]
