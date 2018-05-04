@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Dimensions,
   Image,
+  Platform,
   StatusBar,
   StyleSheet,
   Text,
@@ -132,8 +133,10 @@ class MainScreen extends React.Component {
         Store.dispatch({ type: 'FINISH_ORDER' });
       }
     } else {
+      // animate more smoothly on iOS because the frame rate is higher
+      let slewRate = (Platform.OS === 'ios') ? 0.1 : 0.2;
       this.setState({
-        cashForDisplay: this.state.cashForDisplay + 0.1 * (this.props.cash - this.state.cashForDisplay),
+        cashForDisplay: this.state.cashForDisplay + slewRate * (this.props.cash - this.state.cashForDisplay),
       }, () => {
         requestAnimationFrame(this._animateCash);
       });

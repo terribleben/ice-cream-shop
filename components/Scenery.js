@@ -3,6 +3,7 @@ import {
   Animated,
   Easing,
   Dimensions,
+  Platform,
   StyleSheet,
   View,
 } from 'react-native';
@@ -62,7 +63,7 @@ export default class Scenery extends React.Component {
     Animated.timing(this.state.customerXOffset, {
       easing: Easing.inOut(Easing.quad),
       toValue: this._customerXOffsetVal,
-      duration: 2000,
+      duration: (Platform.OS === 'ios') ? 2000 : 1750,
       useNativeDriver: true,
     }).start();
   }
