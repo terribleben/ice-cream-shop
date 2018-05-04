@@ -5,7 +5,8 @@ const customers = [
   'Harold', 'Buster', 'Joe', 'Marjorie', 'Randolph',
   'Gilbert', 'Gloria', 'Lola', 'Lionel', 'Stu',
   'Betsy', 'Todd', 'Dirk', 'Bertha', 'Olga', 'Agatha',
-  'Agnes', 'Gus', 'Ned',
+  'Agnes', 'Gus', 'Ned', 'Jed', 'Lucretia', 'Gabby',
+  'Tabatha', 'Norm', 'Bjorn', 'Carl', 'Phoebe',
 ];
 
 const items = [
@@ -59,6 +60,16 @@ const items = [
   'something flavored like bubble gum',
   'a french vanilla bucket',
   'a triple frosty crunch bucket',
+  'just some ice',
+  'a milk shake',
+  'a mork shake',
+  'milks',
+  'an extra cold ice cream',
+  'blueberry sorbet',
+  'one chocolate one vanilla',
+  'a peanut butter swirl',
+  'some nuts',
+  'to be rewarded for their patience',
 ];
 
 const responses = [
@@ -82,6 +93,9 @@ const responses = [
   'boy',
   'young sir',
   'my good man',
+  'child',
+  'you beastly man',
+  'horsemaster',
 ];
 
 const levelThresholds = [
