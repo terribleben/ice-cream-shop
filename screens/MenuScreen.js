@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Image,
   Text,
   TouchableHighlight,
   StyleSheet,
@@ -10,6 +9,7 @@ import {
 import Store from '../redux/Store';
 import Constants from '../util/Constants';
 import SoundManager from '../assets/SoundManager';
+import ImageWrapper from '../components/ImageWrapper';
 
 export default class MenuScreen extends React.Component {
   state = {
@@ -37,7 +37,7 @@ export default class MenuScreen extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <Image
+        <ImageWrapper
           source={require('../assets/menu.png')}
           style={styles.menuImage} />
         <TouchableHighlight

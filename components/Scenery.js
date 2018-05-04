@@ -3,7 +3,6 @@ import {
   Animated,
   Easing,
   Dimensions,
-  Image,
   StyleSheet,
   View,
 } from 'react-native';
@@ -11,6 +10,9 @@ import {
 const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 import Megatron from './Megatron';
 import Star from './Star';
+import ImageWrapper from './ImageWrapper';
+
+const AnimatedImageWrapper = Animated.createAnimatedComponent(ImageWrapper);
 
 export default class Scenery extends React.Component {
   state = {
@@ -43,10 +45,10 @@ export default class Scenery extends React.Component {
       <View style={[styles.container, { width: this.state.dimensions.width, height: this.state.dimensions.height }]}>
         <Megatron level={this.props.level} dimensions={this.state.dimensions} />
         {this._renderCustomers()}
-        <Image
+        <ImageWrapper
           source={require('../assets/foreground.png')}
           style={styles.foregroundImage} />
-        <Image
+        <ImageWrapper
           source={require('../assets/moreground.png')}
           style={[styles.moregroundImage, { width: this.state.dimensions.width - 480 }]} />
         {this._renderStars()}
@@ -116,7 +118,7 @@ export default class Scenery extends React.Component {
 
   _renderCustomer = (id, x) => {
     return (
-      <Animated.Image
+      <AnimatedImageWrapper
         key={id}
         source={require('../assets/customer.png')}
         style={[
