@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   startButtonText: {
     color: '#ffffff',
     fontSize: 48,
-    fontWeight: '700',
+    fontWeight: '400',
     fontFamily: Constants.Font,
   },
   menuImage: {
